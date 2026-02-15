@@ -9,16 +9,16 @@ public class PerishableParcel extends Parcel {
         this.timeToLive = timeToLive;
     }
 
-    @Override
-    protected int getBasicCost() {
-        return BASIC_COST;
-    }
-
     public boolean isExpired(int currentDay) {
         return getSendDay() + getTimeToLive() < currentDay;
     }
 
     public int getTimeToLive() {
         return timeToLive;
+    }
+
+    @Override
+    public int calculateDeliveryCost() {
+        return getWeight() * BASIC_COST;
     }
 }
